@@ -2,7 +2,6 @@ from django.db import models
 import django.utils.timezone as timezone
 # Create your models here.
 
-
 class Item(models.Model):    #创建工程列表
     iname = models.CharField(max_length=200, blank=True, null=True, verbose_name='工程名称')
     idate = models.DateTimeField(default=None, auto_now=False, auto_now_add=False, verbose_name='项目日期')

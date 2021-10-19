@@ -46,13 +46,20 @@
     <tr>
         <th>序号</th>
         <th>项目名称</th>
+        <th>项目时间</th>
         <th>数量</th>
         <th>单价</th>
-        <th>合计</th>
+        <th>税率</th>
+        <th>含税价格</th>
+        <th>是否加急</th>
+        <th>运送方式</th>
+        <th>运费</th>
+        <th>费用合计</th>
+        <th>备注</th>
         <th>添加时间</th>
         <th>修改时间</th>
-        <th>项目 ID</th>
-        <th>机构 ID</th>
+        <th>所属项目</th>
+        <th>所属机构</th>
         <th>更新</th>
         <th>删除</th>
     </tr>
@@ -60,9 +67,16 @@
     <tr>
         <td>{{ item.id }}</td>
         <td>{{ item.iname }}</td>
+        <td>{{ item.idate }}</td>
         <td>{{ item.inum }}</td>
         <td>{{ item.iprice }}</td>
+        <td>{% widthratio item.itaxi|add:100 100 1 %}</td>
+        <td>{{ item.tcount }}</td>
+        <td>{{ item.isUrgency }}</td>
+        <td>{{ item.toWhere }}</td>
+        <td>{{ item.shipcount }}</td>
         <td>{{ item.itotal }}</td>
+        <td>{{ item.imemo }}</td>
         <td>{{ item.add_date }}</td>
         <td>{{ item.mod_date }}</td>
         <td>{{ item.pid }}</td>
