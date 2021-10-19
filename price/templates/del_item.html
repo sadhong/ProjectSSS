@@ -1,0 +1,70 @@
+<style type="text/css">
+
+	table.gridtable {
+		font-family: verdana,arial,sans-serif;
+		font-size: 11px;
+		color: #333333;
+		border-width: 0px;
+		border-color: #666666;
+		border-collapse: collapse;
+		text-align: center;
+	}
+
+	table.gridtable th {
+		border-width: 0px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #c8c8c8;
+	}
+
+	table.gridtable td {
+		border-width: 0px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #ffffff;
+        height: 50px;
+	}
+
+</style>
+
+
+<!-- HTML Table goes in the document BODY -->
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html"; charset="gb2312" />
+    	<title>删除项目</title>
+	</head>
+	<body>
+	<form action="" method="POST">
+		{% csrf_token %}
+        <table align='center' class='gridtable'>
+            <tr>
+		        <td align='right'>工程名称 : </td>
+                <td aligh='left'><input type="text" value="{{ item.iname }}" name="iname"></td>
+            </tr>
+            <tr>
+		        <td align='right'>工程数量 :</td>
+                <td align='left'><input type="text" value="{{ item.inum }}" name="inum"></td>
+            </tr>
+            <tr>
+		        <td align='right'>单价:</td>
+                <td align='left'><input type="text" value="{{ item.iprice }}" name="iprice"></td>
+            </tr>
+            <tr>
+            <td align='right'>项目 ID：</td>
+            <td align='left'><input type="text" value="{{ item.pid }}" name="pid"></td>
+            </tr>
+            <tr>
+		        <td align='right'>机构 ID：</td>
+                <td align='left'><input type="text" value="{{ item.oid }}" name="oid"></td>
+            </tr>
+            <tr>
+    	    <td align='center'><input type="submit" value="确认删除"></td>
+            </tr>
+        </table>
+	</form>
+	</body>
+</html>

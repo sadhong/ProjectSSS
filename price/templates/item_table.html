@@ -1,0 +1,80 @@
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+
+<style type="text/css">
+
+	table.gridtable {
+		font-family: verdana,arial,sans-serif;
+		font-size: 11px;
+		color: #333333;
+		border-width: 0px;
+		border-color: #666666;
+		border-collapse: collapse;
+		text-align: center;
+	}
+
+	table.gridtable th {
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #c8c8c8;
+	}
+
+	table.gridtable td {
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #ffffff;
+	}
+
+</style>
+
+
+
+<!-- HTML Table goes in the document BODY -->
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>项目信息表</title>
+</head>
+<body>
+<h1 align='center'>项目列表</h1>
+<p align='center'><a href='add_item.html'>添加项目</a></p>
+<table align='center' class='gridtable'>
+    <tr>
+        <th>序号</th>
+        <th>项目名称</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>合计</th>
+        <th>添加时间</th>
+        <th>修改时间</th>
+        <th>项目 ID</th>
+        <th>机构 ID</th>
+        <th>更新</th>
+        <th>删除</th>
+    </tr>
+    {% for item in all_item %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.iname }}</td>
+        <td>{{ item.inum }}</td>
+        <td>{{ item.iprice }}</td>
+        <td>{{ item.itotal }}</td>
+        <td>{{ item.add_date }}</td>
+        <td>{{ item.mod_date }}</td>
+        <td>{{ item.pid }}</td>
+        <td>{{ item.oid }}</td>
+        <td>
+            <a href="/price/update_item/{{ item.id }}">更新</a>
+        </td>
+        <td>
+            <a href="/price/del_item/{{ item.id }}">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

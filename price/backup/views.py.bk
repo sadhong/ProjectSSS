@@ -1,0 +1,33 @@
+from django.shortcuts import render
+from price.models import Item 
+
+# Create your views here.
+
+'''
+def show_html(request):
+    a={} #创建空字典，模板必须以字典的形式进行传参
+    a['name']='C语言中文网' 
+    a['course']=["Python","C","C++","Java"]
+    a['b']={'name':'C语言中文网','address':'http://c.biancheng.net/'}
+    a['test_hello']=test_hello
+    a['class_obj']=Website()
+    return render(request,'show_html.html',a)
+
+def test_hello():
+    return '欢迎来到C语言中文网'
+
+class Website:
+    def Web_name(self):
+        return 'Hello，C语言中文网!'
+    #Web_name.alters_data=True #不让Website()方法被模板调用
+'''
+
+
+def item_table(request):
+    try:
+        all_item = Item.objects.all()
+        if not all_item:
+            return HttpResponse('工程信息列表为空，请录入！')
+    except Exception as e:
+        print(e)
+    return render(request, 'item_table.html', locals())
