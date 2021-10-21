@@ -67,18 +67,18 @@
     <tr>
         <td>{{ item.id }}</td>
         <td>{{ item.iname }}</td>
-        <td>{{ item.idate }}</td>
+        <td>{{ item.idate|date:"Y年m月d日" }}</td>
         <td>{{ item.inum }}</td>
         <td>{{ item.iprice }}</td>
-        <td>{% widthratio item.itaxi|add:100 100 1 %}</td>
+        <td>{% widthratio item.itaxi 1 100 %}%</td>
         <td>{{ item.tcount }}</td>
         <td>{{ item.isUrgency }}</td>
         <td>{{ item.toWhere }}</td>
         <td>{{ item.shipcount }}</td>
         <td>{{ item.itotal }}</td>
         <td>{{ item.imemo }}</td>
-        <td>{{ item.add_date }}</td>
-        <td>{{ item.mod_date }}</td>
+        <td>{{ item.add_date|date:"Y年m月d日" }}</td>
+        <td>{{ item.mod_date|date:"Y年m月d日" }}</td>
         <td>{{ item.pid }}</td>
         <td>{{ item.oid }}</td>
         <td>

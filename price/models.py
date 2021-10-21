@@ -10,7 +10,7 @@ class Item(models.Model):    #创建工程列表
     isUrgency = models.BooleanField(default=False, verbose_name='是否加急') 
     toWhere = models.CharField(max_length=10, blank=True, null=True, verbose_name='运送方式')
     imemo = models.CharField(max_length=300, blank=True, null=True, verbose_name='项目备注')
-    itaxi = models.IntegerField(default=13, blank=True, null=True, verbose_name='税率')
+    itaxi = models.FloatField(default=0.13, null=True, verbose_name='税率')
     tcount = models.FloatField(blank=True, null=True, verbose_name='含税费用')
     shipcount = models.FloatField(blank=True, null=True, verbose_name='运费')
     itotal = models.FloatField(blank=True, null=True, verbose_name='合计价格')

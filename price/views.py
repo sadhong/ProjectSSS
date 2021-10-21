@@ -27,20 +27,33 @@ def add_item(request):
         if not iname:
             return HttpResponse('输入错误！请输入正确的名称。')
 
+        idate = request.POST.get('idate')
+
         inum = request.POST.get('inum')
         
         iprice = request.POST.get('iprice')
         if not iprice:
             return HttpResponse('请输入正确的单价！')
+
+        itaxi = round(int(request.POST.get('itaxi'))/100,2)
+        print(itaxi)
+
+        isUrgency = request.POST.get('isUrgency')
+
+        toWhere = request.POST.get('toWhere')
+
+        shipcount = request.POST.get('shipcount')
+
+        imemo = request.POST.get('imemo')
         
-        itotal = float(iprice) * float(inum)
+        itotal = float(iprice) * float(inum) + float(shipcount)) * float((itaxi+1))
 
         pid = request.POST.get('pid')
 
         oid = request.POST.get('oid')
 
         try:
-            Item.objects.create(iname=iname,inum=inum,iprice=iprice,itotal=itotal,pid=pid,oid=oid)
+            Item.objects.create(iname=iname, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, pid=pid, oid=oid)
         except Exception as e:
             print('数据添加错误！---> %s' %(e))
         return HttpResponseRedirect('/price/item_table.html')
