@@ -42,37 +42,71 @@
     <h1 align='center'>添加项目</h1>
 	<form action="add_item.html" method="post">
 			{% csrf_token %}
-            <table align='center' width="500" border="0" align="center" cellpadding="0" cellspacing="0" class='gridtable'>
-		  <tbody>
-		    <tr>
-		      <td align="right">项目名称：</td>
-		      <td align="left"><input type="text" name="iname"></td>
-	        </tr>
-		    <tr>
-		      <td align="right">项目数量：</td>
-		      <td align="left"><input type="text" name="inum"></td>
-	        </tr>
-		    <tr>
-		      <td align="right">单价：</td>
-		      <td align="left"><input type="text" name="iprice"></td>
-	        </tr>
-		    <tr>
-		      <td align="right">项目 ID：</td>
-		      <td align="left"><input type="text" name="pid"></td>
-	        </tr>
-		    <tr>
-		      <td align="right">机构 ID：</td>
-		      <td align=left><input type="text" name="oid"></td>
-	        </tr>
-            <tr>
-		      <td colspan="2" align="center"> </td>
-	        </tr>
-		    <tr>
-		      <td align='center' colspan="2" align="center"><input type="submit" value="提交"></td>
-	        </tr>
-	      </tbody>
-    </table>
-		</form>
+          <table align='center' width="500" border="0" align="center" cellpadding="0" cellspacing="0" class='gridtable'>
+		      <tbody>
+		         <tr>
+		            <td align="right">项目名称：</td>
+		            <td align="left"><input type="text" name="iname"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">项目时间：</td>
+		            <td align="left"><input type="text" name="idate"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">数量：</td>
+		            <td align="left"><input type="text" name="inum"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">单价：</td>
+		            <td align="left"><input type="number" name="iprice"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">税率：</td>
+		            <td align="left"><input type="number" name="itaxi"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">是否加急：</td>
+		            <td align="left">
+                       <select name="isUrgency">
+                          <option value="True" selected>是</option>
+                          <option value="False">否</option>
+                       </select>
+                    </td>
+	             </tr>
+		         <tr>
+		            <td align="right">运送方式：</td>
+                    <td align="left">
+                       <select name="toWhere">
+                          <option value="快递" selected>快递</option>
+                          <option value="人肉">人肉</option>
+                       </select>
+                    </td>
+	             </tr>
+		         <tr>
+		            <td align="right">运费：</td>
+		            <td align="left"><input type="number" name="shipcount"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">备注：</td>
+		            <td align="left"><input type="text" name="imemo"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">项目 ID：</td>
+		            <td align="left"><input type="text" name="pid"></td>
+	             </tr>
+		         <tr>
+		            <td align="right">机构 ID：</td>
+		            <td align=left><input type="text" name="oid"></td>
+	             </tr>
+                 <tr>
+		            <td colspan="2" align="center"> </td>
+	             </tr>
+		         <tr>
+		            <td align='center' colspan="2" align="center"><input type="submit" value="提交"></td>
+	             </tr>
+	          </tbody>
+          </table>
+	</form>
     </body>
 </html>
 

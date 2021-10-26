@@ -44,16 +44,58 @@
 			{% csrf_token %}
             <table align='center' class='gridtable'>
                 <tr>
-			        <td align='right'>工程名称 : </td>
+			        <td align='right'>项目名称 : </td>
                     <td align='left'><input type="text" value="{{ item.iname }}" name="iname"></td>
                 </tr>
                 <tr>
-			        <td align='right'>工程数量 :</td>
+			        <td align='right'>项目时间 : </td>
+                    <td align='left'><input type="text" value="{{ item.idate|date:"Y-m-d" }}" name="idate"></td>
+                </tr>
+                <tr>
+			        <td align='right'>数量 :</td>
                     <td align='left'><input type="text" value="{{ item.inum }}" name="inum"></td>
                 </tr>
                 <tr>
 			        <td align='right'>单价:</td>
                     <td align='left'><input type="text" value="{{ item.iprice }}" name="iprice"></td>
+                </tr>
+                <tr>
+			        <td align='right'>税率:</td>
+                    <td align='left'><input type="text" value="{{ item.itaxi }}" name="itaxi"></td>
+                </tr>
+                <tr>
+			        <td align='right'>含税价格:</td>
+                    <td align='left'><input type="text" value="{{ item.tcount }}" name="tcount"></td>
+                </tr>
+                <tr>
+			        <td align='right'>是否加急:</td>
+                    <td align='left'>
+                        <select name='isUrgency'>
+                            {% if item.isUrgency == True %}
+                            <option value='True' selected>是</option>
+                            <option value='False'>否</option>
+                            {% else %}
+                            <option value='False' selected>否</option>
+                            <option value='True'>是</option>
+                            {% endif %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+			        <td align='right'>运送方式:</td>
+                    <td align='left'><input type="text" value="{{ item.toWhere }}" name="toWhere"></td>
+                </tr>
+                <tr>
+			        <td align='right'>运费:</td>
+                    <td align='left'><input type="text" value="{{ item.shipcount }}" name="shipcount"></td>
+                </tr>
+                <tr>
+			        <td align='right'>费用合计:</td>
+                    <td align='left'><input type="text" value="{{ item.itotal }}" name="itotal"></td>
+                </tr>
+                <tr>
+			        <td align='right'>备注:</td>
+                    <td align='left'><input type="text" value="{{ item.imemo }}" name="imemo"></td>
                 </tr>
                 <tr>
 			        <td align='right'>项目 ID：</td>

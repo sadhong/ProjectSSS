@@ -27,20 +27,42 @@ def add_item(request):
         if not iname:
             return HttpResponse('输入错误！请输入正确的名称。')
 
+        idate = request.POST.get('idate')
+
         inum = request.POST.get('inum')
         
         iprice = request.POST.get('iprice')
         if not iprice:
             return HttpResponse('请输入正确的单价！')
+
+        itaxi = request.POST.get('itaxi')
+        print('税率为：', itaxi, '%')
+        itaxi_tmp = round(int(itaxi)/100,2) + 1
+        print('运算税率为：',itaxi_tmp)
+
+        tcount = float(iprice) * float(inum) * float(itaxi_tmp)
+
+        isUrgency = request.POST.get('isUrgency')
+
+        toWhere = request.POST.get('toWhere')
+
+        shipcount = request.POST.get('shipcount')
+
+        memo_tmp = request.POST.get('imemo')
+        if memo_tmp.strip() == '':
+            imemo = '---'
+        else:
+            imemo = memo_tmp
         
-        itotal = float(iprice) * float(inum)
+        itotal = (float(iprice) * float(inum) + float(shipcount)) * float(itaxi_tmp)
+        print('含税总价为：', itotal)
 
         pid = request.POST.get('pid')
 
         oid = request.POST.get('oid')
 
         try:
-            Item.objects.create(iname=iname,inum=inum,iprice=iprice,itotal=itotal,pid=pid,oid=oid)
+            Item.objects.create(iname=iname, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, tcount=tcount, pid=pid, oid=oid)
         except Exception as e:
             print('数据添加错误！---> %s' %(e))
         return HttpResponseRedirect('/price/item_table.html')
@@ -74,9 +96,22 @@ def update_item(request, item_id):
         return render(request, 'update_item.html', locals())
     elif request.method == 'POST':
         iname = request.POST.get('iname')
+        idate = request.POST.get('idate')
         inum = request.POST.get('inum')
         iprice = request.POST.get('iprice')
-        itotal = float(iprice) * float(inum)
+        itaxi = request.POST.get('itaxi')
+        itaxi_tmp = round(int(itaxi)/100,2) + 1
+        tcount = float(iprice) * float(inum) * float(itaxi_tmp)
+        isUrgency = request.POST.get('isUrgency')
+        toWhere = request.POST.get('toWhere')
+        shipcount = request.POST.get('shipcount')
+        itotal = (float(iprice) * float(inum) + float(shipcount)) * float(itaxi_tmp)
+        memo_tmp = request.POST.get('imemo')
+        if memo_tmp.strip() == '':
+            imemo = '---'
+        else:
+            imemo = memo_tmp
+        
         if not iprice or not itotal:
             return HttpResponse('请输入修改后的价格！')
         pid = request.POST.get('pid')
@@ -84,8 +119,15 @@ def update_item(request, item_id):
 
         item.iname = iname
         item.inum = inum
+        item.idate = idate
         item.iprice = iprice
+        item.itaxi = itaxi
+        item.tcount = tcount
+        item.isUrgency = isUrgency
+        item.toWhere = toWhere
+        item.shipcount = shipcount
         item.itotal = itotal
+        item.imemo = imemo
         item.pid = pid
         item.oid = oid
         item.save()

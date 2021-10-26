@@ -25,7 +25,6 @@
 		padding: 8px;
 		border-style: solid;
 		border-color: #666666;
-		background-color: #ffffff;
 	}
 
 </style>
@@ -64,21 +63,25 @@
         <th>删除</th>
     </tr>
     {% for item in all_item %}
-    <tr>
+        {% if forloop.counter|divisibleby:'2' %}
+            <tr style='background-color:#c8c8c8'>
+        {% else %}
+            <tr style='background-color:#ffffff'>
+        {% endif %}
         <td>{{ item.id }}</td>
         <td>{{ item.iname }}</td>
-        <td>{{ item.idate }}</td>
+        <td>{{ item.idate|date:"Y年m月d日" }}</td>
         <td>{{ item.inum }}</td>
         <td>{{ item.iprice }}</td>
-        <td>{% widthratio item.itaxi|add:100 100 1 %}</td>
+        <td>{{ item.itaxi }}%</td>
         <td>{{ item.tcount }}</td>
-        <td>{{ item.isUrgency }}</td>
+        <td>{% if item.isUrgency == True %} 是 {% else %} 否 {% endif %} </td>
         <td>{{ item.toWhere }}</td>
         <td>{{ item.shipcount }}</td>
         <td>{{ item.itotal }}</td>
         <td>{{ item.imemo }}</td>
-        <td>{{ item.add_date }}</td>
-        <td>{{ item.mod_date }}</td>
+        <td>{{ item.add_date|date:"Y年m月d日" }}</td>
+        <td>{{ item.mod_date|date:"Y年m月d日" }}</td>
         <td>{{ item.pid }}</td>
         <td>{{ item.oid }}</td>
         <td>
