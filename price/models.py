@@ -10,17 +10,14 @@ class Item(models.Model):    #创建工程列表
     isUrgency = models.BooleanField(default=False, verbose_name='是否加急') 
     toWhere = models.CharField(max_length=10, blank=True, null=True, verbose_name='运送方式')
     imemo = models.CharField(max_length=300, blank=True, null=True, verbose_name='项目备注')
-<<<<<<< HEAD
     itaxi = models.IntegerField(default=13, blank=True, null=True, verbose_name='税率')
     tcount = models.DecimalField(blank=True, max_digits=7, decimal_places=2, null=True, verbose_name='含税费用')
     shipcount = models.IntegerField(blank=True, null=True, verbose_name='运费')
     itotal = models.DecimalField(blank=True, max_digits=7, decimal_places=2, null=True, verbose_name='合计价格')
-=======
     itaxi = models.FloatField(default=0.13, null=True, verbose_name='税率')
-    tcount = models.FloatField(blank=True, null=True, verbose_name='含税费用')
+    tcount = models.IntegerField(blank=True, null=True, verbose_name='含税费用')
     shipcount = models.FloatField(blank=True, null=True, verbose_name='运费')
     itotal = models.FloatField(blank=True, null=True, verbose_name='合计价格')
->>>>>>> 6eeadba4019d86d128bd2e5ffeff9d8c0abaab60
     add_date = models.DateTimeField(default=timezone.now, verbose_name='添加日期')
     mod_date = models.DateTimeField(auto_now = True, verbose_name='最后修改日期')
     pid = models.IntegerField(blank=True, null=True, verbose_name='项目ID')
