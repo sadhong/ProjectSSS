@@ -35,12 +35,17 @@ def add_item(request):
         if not iprice:
             return HttpResponse('请输入正确的单价！')
 
+<<<<<<< HEAD
         itaxi = request.POST.get('itaxi')
         print('税率为：', itaxi, '%')
         itaxi_tmp = round(int(itaxi)/100,2) + 1
         print('运算税率为：',itaxi_tmp)
 
         tcount = float(iprice) * float(inum) * float(itaxi_tmp)
+=======
+        itaxi = round(int(request.POST.get('itaxi'))/100,2)
+        print(itaxi)
+>>>>>>> 6eeadba4019d86d128bd2e5ffeff9d8c0abaab60
 
         isUrgency = request.POST.get('isUrgency')
 
@@ -48,6 +53,7 @@ def add_item(request):
 
         shipcount = request.POST.get('shipcount')
 
+<<<<<<< HEAD
         memo_tmp = request.POST.get('imemo')
         if memo_tmp.strip() == '':
             imemo = '---'
@@ -56,13 +62,22 @@ def add_item(request):
         
         itotal = (float(iprice) * float(inum) + float(shipcount)) * float(itaxi_tmp)
         print('含税总价为：', itotal)
+=======
+        imemo = request.POST.get('imemo')
+        
+        itotal = float(iprice) * float(inum) + float(shipcount)) * float((itaxi+1))
+>>>>>>> 6eeadba4019d86d128bd2e5ffeff9d8c0abaab60
 
         pid = request.POST.get('pid')
 
         oid = request.POST.get('oid')
 
         try:
+<<<<<<< HEAD
             Item.objects.create(iname=iname, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, tcount=tcount, pid=pid, oid=oid)
+=======
+            Item.objects.create(iname=iname, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, pid=pid, oid=oid)
+>>>>>>> 6eeadba4019d86d128bd2e5ffeff9d8c0abaab60
         except Exception as e:
             print('数据添加错误！---> %s' %(e))
         return HttpResponseRedirect('/price/item_table.html')
