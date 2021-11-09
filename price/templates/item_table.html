@@ -45,6 +45,7 @@
     <tr>
         <th>序号</th>
         <th>项目名称</th>
+		<th>项目位置</th>
         <th>项目时间</th>
         <th>数量</th>
         <th>单价</th>
@@ -70,11 +71,11 @@
         {% endif %}
         <td>{{ item.id }}</td>
         <td>{{ item.iname }}</td>
+		<td>{{ item.iplace }}</td>
         <td>{{ item.idate|date:"Y年m月d日" }}</td>
         <td>{{ item.inum }}</td>
         <td>{{ item.iprice }}</td>
         <td>{{ item.itaxi }}%</td>
-        <td>{% widthratio item.itaxi 1 100 %}%</td>
         <td>{{ item.tcount }}</td>
         <td>{% if item.isUrgency == True %} 是 {% else %} 否 {% endif %} </td>
         <td>{{ item.toWhere }}</td>
