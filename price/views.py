@@ -27,6 +27,12 @@ def add_item(request):
         if not iname:
             return HttpResponse('输入错误！请输入正确的名称。')
 
+        iplace_tmp = request.POST.get('iplace')
+        if iplace_tmp.strip() == '':
+            iplace = '---'
+        else:
+            iplace = iplace_tmp
+
         idate = request.POST.get('idate')
 
         inum = request.POST.get('inum')
@@ -41,8 +47,6 @@ def add_item(request):
         print('运算税率为：',itaxi_tmp)
 
         tcount = float(iprice) * float(inum) * float(itaxi_tmp)
-        itaxi = round(int(request.POST.get('itaxi'))/100,2)
-        print(itaxi)
 
         isUrgency = request.POST.get('isUrgency')
 
@@ -54,20 +58,18 @@ def add_item(request):
         if memo_tmp.strip() == '':
             imemo = '---'
         else:
-            imemo = memo_tmp
+            imemo = memo_tmp.strip()
         
-        itotal = (float(iprice) * float(inum) + float(shipcount)) * float(itaxi_tmp)
+        itotal = (float(iprice) * float(inum) + float(shipcount)) * itaxi_tmp
         print('含税总价为：', itotal)
         imemo = request.POST.get('imemo')
         
-        itotal = float(iprice) * float(inum) + float(shipcount)) * float((itaxi+1))
-
         pid = request.POST.get('pid')
 
         oid = request.POST.get('oid')
 
         try:
-            Item.objects.create(iname=iname, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, tcount=tcount, pid=pid, oid=oid)
+            Item.objects.create(iname=iname, iplace=iplace, idate=idate, inum=inum, iprice=iprice, itaxi=itaxi, isUrgency=isUrgency, toWhere=toWhere, shipcount=shipcount, imemo=imemo, itotal=itotal, tcount=tcount, pid=pid, oid=oid)
         except Exception as e:
             print('数据添加错误！---> %s' %(e))
         return HttpResponseRedirect('/price/item_table.html')
@@ -101,6 +103,12 @@ def update_item(request, item_id):
         return render(request, 'update_item.html', locals())
     elif request.method == 'POST':
         iname = request.POST.get('iname')
+        iplace_tmp = request.POST.get('iplace')
+        if iplace_tmp.strip() == '':
+            iplace = '---'
+        else:
+            iplace = iplace_tmp.strip()
+
         idate = request.POST.get('idate')
         inum = request.POST.get('inum')
         iprice = request.POST.get('iprice')
@@ -123,6 +131,7 @@ def update_item(request, item_id):
         oid = request.POST.get('oid')
 
         item.iname = iname
+        item.iplace = iplace
         item.inum = inum
         item.idate = idate
         item.iprice = iprice
