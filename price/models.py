@@ -4,6 +4,7 @@ import django.utils.timezone as timezone
 
 class Item(models.Model):    #创建工程列表
     iname = models.CharField(max_length=200, blank=True, null=True, verbose_name='工程名称')
+    iplace = models.CharField(max_length=200,blank=True, null=True, verbose_name='项目位置')
     idate = models.DateTimeField(default=None, auto_now=False, auto_now_add=False, verbose_name='项目日期')
     inum = models.IntegerField(blank=True, null=True, verbose_name='数量')
     iprice = models.DecimalField(blank=True, max_digits=7, decimal_places=2, null=True, verbose_name='单价')
@@ -14,10 +15,6 @@ class Item(models.Model):    #创建工程列表
     tcount = models.DecimalField(blank=True, max_digits=7, decimal_places=2, null=True, verbose_name='含税费用')
     shipcount = models.IntegerField(blank=True, null=True, verbose_name='运费')
     itotal = models.DecimalField(blank=True, max_digits=7, decimal_places=2, null=True, verbose_name='合计价格')
-    itaxi = models.FloatField(default=0.13, null=True, verbose_name='税率')
-    tcount = models.IntegerField(blank=True, null=True, verbose_name='含税费用')
-    shipcount = models.FloatField(blank=True, null=True, verbose_name='运费')
-    itotal = models.FloatField(blank=True, null=True, verbose_name='合计价格')
     add_date = models.DateTimeField(default=timezone.now, verbose_name='添加日期')
     mod_date = models.DateTimeField(auto_now = True, verbose_name='最后修改日期')
     pid = models.IntegerField(blank=True, null=True, verbose_name='项目ID')
